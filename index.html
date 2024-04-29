@@ -4,63 +4,117 @@
   <title>qierr</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
-  <script src="./js/bootstrap.bundle.min.js"></script>
+  <link href="./css/style.css" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QBHSST19S9"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-QBHSST19S9');
+  function Random(min, max) {
+    return Math.round(Math.random() * (max - min)) + min;
+}
+function sectote(s){
+    var mi=parseInt(s/60);
+    var se=s%60;
+    if(se<10){
+        se='0'+se
+    }
+    return mi+":"+se;
+
+}
 </script>
+
+
 <link rel="shortcut icon" href="favicon.ico" />
-<link rel="bookmark" href="favicon.ico" type="image/x-icon"　/>
 </head>
 <body>
-
-    <div class="container">
-        <h1 class="text-center">qierr</h1>
-        <img src="img/qierr.jpg" class="mx-auto d-block img-fluid" width="128" height="128">
-        <h4 class="display-6">Do something together!</h4><br>
-        <p>Switch to <a href="index_zh.html">简体中文</a></p>
-        <div class="alert alert-danger">
-            <strong>The server is located in San Francisco,so it may be slow to load.</strong>
-        </div>
-        <div class="alert alert-success">
-            <h3><strong>Social Media</strong></h3>
-            <p>You can see something new in my blog.But you can't view if you are in China Mainland.</p>
-            <p><a href="https://imqierr.blogspot.com/">View my blog</a></p>
-        </div>
-        <div class="alert alert-info">
-            <h3><strong>UnrealUnion</strong></h3>
-            <p>URUN is a comprehensive group,we want each of the members to play a role.</p>
-            <p><a href="./project/unrealunion/memlist.html">View URUN members list</a></p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="popover" title="Not now" data-bs-content="URUN is not open now!">
-                Join URUN
-            </button>
-        </div>
-        <div class="alert alert-info">
-            <h3><strong>Foreigh Language Institute Football Team of Dream</strong></h3>
-            <p>I'm in Foreigh Language Institute Football Team of Dream</p>
-            <p><a href="./project/soccerteam.html">View FLIFTD</a></p>
-        </div>
-        <div class="alert alert-info">
-            <h3><strong>Zhaolei X qierr</strong></h3>
-            <p>Zhaolei is my favorite singer.</p>
-            <p><a href="./project/zhaoleizz/index.html">View Zhaolei X qierr website</a></p>
-        </div>
-
-        <h1 class="display-2">Ad</h1><hr>
-        <img src="img/ad2.jpg" class="mx-auto d-block img-fluid">
+    <div class="music-player">
+        <img class="album" id="album" src="img/shuqianjieshaonian.jpg">
+        <a class="music" id="music">程艾影</a><a class="singer" id="singer">赵雷</a>
+        <p class="lyric" id="lyric">永远都像初次见你那样 使我心荡漾</p>
+        <meter min="0" max="300" value="135" id="time-m"></meter>
+        <p class="time" id="time">2:16 / 5:00</p>
+    </div>
+    <div class="link">
+        <img src="img/qierr.jpg" class="image" width="128" height="128">
+        <img src = "img/wechat-logo.svg" width="32px" height="32px"/>
+        <a href="https://twitter.com/qierrss" target="_blank"><img src = "img/X-logo.svg" width="32px" height="32px"/></a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAATZj4mvK7P8Byc_pKtjpmBptlsNekR4jqGFuIWoOxynk" target="_blank"><img src = "img/douyin-logo.svg" width="32px" height="32px"/></a>
+        <a href="https://space.bilibili.com/9810442" target="_blank"><img src = "img/bilibili-logo.svg" width="32px" height="32px"/></a>
     </div>
 
-
 <script>
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl)
-})
+    
+
+var lyrics=new Array(
+    {
+  "a": "sqjsn.jpg",
+  "m": "程艾影",
+  "s": "赵雷",
+  "l": "永远都像初次见你那样 使我心荡漾",
+  "le": 136,
+  "r": 300
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "少女",
+  "s": "赵雷",
+  "l": "偶尔化一化妆吧 我们从来就不会老",
+  "le": 30,
+  "r": 249
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "我记得",
+  "s": "赵雷",
+  "l": "时空是个圆圈 直行或是转弯 我们最终都会相见",
+  "le": 225,
+  "r": 329
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "船长",
+  "s": "赵雷",
+  "l": "请告诉我寂寞的时长 那里是否铺满花儿的香",
+  "le": 8,
+  "r": 350
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "小行迹",
+  "s": "赵雷",
+  "l": "去向同样地方的人很多 而走在角落的人却只有我",
+  "le": 64,
+  "r": 277
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "三里屯的夜",
+  "s": "赵雷",
+  "l": "我为我的生活导演着斑驳的戏 在名利的秀场摘星",
+  "le": 131,
+  "r": 308
+ },
+ {
+  "a": "sqjsn.jpg",
+  "m": "署前街少年",
+  "s": "赵雷",
+  "l": "学校门前辍学的青年在等我吗 是否还记得我眼角上面的伤疤",
+  "le": 113,
+  "r": 303
+ }
+    );
+var number=Random(0,lyrics.length-1)
+document.getElementById("album").src = 'img/'+lyrics[number].a;
+document.getElementById("music").innerHTML = lyrics[number].m;
+document.getElementById("singer").innerHTML = lyrics[number].s;
+document.getElementById("lyric").innerHTML = lyrics[number].l;
+document.getElementById("time-m").value = Number( lyrics[number].le);
+document.getElementById("time-m").max = Number(lyrics[number].r);
+document.getElementById("time").innerHTML = sectote(lyrics[number].le)+" / "+sectote(lyrics[number].r)
+</script>
+    
 </script>
 </body>
 </html>
