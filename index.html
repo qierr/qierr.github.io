@@ -29,15 +29,15 @@ function sectote(s){
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
-    <div class="music-player">
-        <img class="album" id="album" src="img/shuqianjieshaonian.jpg">
+    <div class="music-player" onclick="lyricfr();">
+        <img class="album" id="album" src="img/shuqianjieshaonian.jpg" onclick="lyricfr();">
         <a class="music" id="music">程艾影</a><a class="singer" id="singer">赵雷</a>
         <p class="lyric" id="lyric">永远都像初次见你那样 使我心荡漾</p>
         <meter min="0" max="300" value="135" id="time-m"></meter>
         <p class="time" id="time">2:16 / 5:00</p>
     </div>
     <div class="link">
-        <img src="img/qierr.jpg" class="image" width="128" height="128">
+        <img src="img/qierr.jpg" class="image" width="128" height="128" onclick="lyricfr();">
         <img src = "img/wechat-logo.svg" width="32px" height="32px"/>
         <a href="https://twitter.com/qierrss" target="_blank"><img src = "img/X-logo.svg" width="32px" height="32px"/></a>
         <a href="https://www.douyin.com/user/MS4wLjABAAAATZj4mvK7P8Byc_pKtjpmBptlsNekR4jqGFuIWoOxynk" target="_blank"><img src = "img/douyin-logo.svg" width="32px" height="32px"/></a>
@@ -45,9 +45,8 @@ function sectote(s){
     </div>
 
 <script>
-    
-
-var lyrics=new Array(
+    function lyricfr(){
+        var lyrics=new Array(
     {
   "a": "sqjsn.jpg",
   "m": "程艾影",
@@ -105,7 +104,7 @@ var lyrics=new Array(
   "r": 303
  }
     );
-var number=Random(0,lyrics.length-1)
+var number=Random(0,lyrics.length-1);
 document.getElementById("album").src = 'img/'+lyrics[number].a;
 document.getElementById("music").innerHTML = lyrics[number].m;
 document.getElementById("singer").innerHTML = lyrics[number].s;
@@ -113,6 +112,9 @@ document.getElementById("lyric").innerHTML = lyrics[number].l;
 document.getElementById("time-m").value = Number( lyrics[number].le);
 document.getElementById("time-m").max = Number(lyrics[number].r);
 document.getElementById("time").innerHTML = sectote(lyrics[number].le)+" / "+sectote(lyrics[number].r)
+    }
+
+    lyricfr();
 </script>
     
 </script>
