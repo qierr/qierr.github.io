@@ -1,8 +1,27 @@
+.background-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: -1; 
+}
+
+.background-text span {
+    position: absolute;
+    font-size: 80px; 
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.08); 
+    transform: rotate(calc(-30deg + 60deg * var(--rotate)));
+    white-space: nowrap;
+}
 .link {
     text-align: center;
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 80px;
 }
 
 .link .image {
@@ -11,6 +30,62 @@
     margin-right: auto;
 }
 
+.navbar {
+    width: 100%;
+    background: #333;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 15px;
+    transition: background 0.3s;
+}
+
+.navbar ul li a:hover {
+    background: #555;
+    border-radius: 5px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
 
 
 .music-player {
@@ -20,6 +95,7 @@
     height: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
     
 }
 .music-player .album {
@@ -31,6 +107,7 @@
 .music-player .music {
     font-size: 30px;
     font-weight: bold;
+    margin-right: 10px;
 }
 .music-player .singer {
     font-size: 15px;

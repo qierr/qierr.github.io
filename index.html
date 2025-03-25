@@ -29,6 +29,42 @@ function sectote(s){
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
+    <div class="background-text"></div>
+
+    <nav class="navbar">
+    <ul>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">状态</a></li>
+    </ul>
+</nav>
+<div class="link">
+        <img src="img/qierr.jpg" class="image" width="128" height="128" onclick="lyricfr();">
+        <img src = "img/wechat-logo.svg" width="32px" height="32px"/>
+        <a href="https://imqierr.blogspot.com/" target="_blank"><img src = "img/tag-fill.svg" width="32px" height="32px"/></a>
+        <a href="https://twitter.com/qierrss" target="_blank"><img src = "img/X-logo.svg" width="32px" height="32px"/></a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAATZj4mvK7P8Byc_pKtjpmBptlsNekR4jqGFuIWoOxynk" target="_blank"><img src = "img/douyin-logo.svg" width="32px" height="32px"/></a>
+        <a href="https://space.bilibili.com/9810442" target="_blank"><img src = "img/bilibili-logo.svg" width="32px" height="32px"/></a>
+    </div>
+<div class="card-container">
+    <a href="#" style="text-decoration:none;">
+        <div class="card">
+        <h2>2026美加墨世界杯</h2>
+        <p>点击查看关于2026年国际足联世界杯的相关内容。</p>
+    </div>
+    </a>
+    <a href="#" style="text-decoration:none;">
+    <div class="card">
+        <h2>我心中的电影TOP10</h2>
+        <p>来看看我心中的电影TOP10吧。</p>
+    </div>
+    </a>
+    <a href="#" style="text-decoration:none;">
+    <div class="card">
+        <h2>我心中的电影TOP10</h2>
+        <p>来看看我心中的电影TOP10吧。</p>
+    </div>
+    </a>
+</div>
     <div class="music-player" onclick="lyricfr();">
         <img class="album" id="album" src="img/shuqianjieshaonian.jpg" onclick="lyricfr();">
         <a class="music" id="music">程艾影</a><a class="singer" id="singer">赵雷</a>
@@ -36,13 +72,7 @@ function sectote(s){
         <meter min="0" max="300" value="135" id="time-m"></meter>
         <p class="time" id="time">2:16 / 5:00</p>
     </div>
-    <div class="link">
-        <img src="img/qierr.jpg" class="image" width="128" height="128" onclick="lyricfr();">
-        <img src = "img/wechat-logo.svg" width="32px" height="32px"/>
-        <a href="https://twitter.com/qierrss" target="_blank"><img src = "img/X-logo.svg" width="32px" height="32px"/></a>
-        <a href="https://www.douyin.com/user/MS4wLjABAAAATZj4mvK7P8Byc_pKtjpmBptlsNekR4jqGFuIWoOxynk" target="_blank"><img src = "img/douyin-logo.svg" width="32px" height="32px"/></a>
-        <a href="https://space.bilibili.com/9810442" target="_blank"><img src = "img/bilibili-logo.svg" width="32px" height="32px"/></a>
-    </div>
+    
 
 <script>
     function lyricfr(){
@@ -163,6 +193,20 @@ document.getElementById("time").innerHTML = sectote(lyrics[number].le)+" / "+sec
     }
 
     lyricfr();
+
+    const background = document.querySelector(".background-text");
+    const text = "自由人权平等共和民主宪政"; // 你可以换成其他想要的背景文字
+    const count = 30; // 控制背景文字数量
+
+    for (let i = 0; i < count; i++) {
+        const span = document.createElement("span");
+        span.textContent = text[Math.floor(Math.random() * text.length)];
+        span.style.setProperty("--size", Math.random()); // 控制字体大小
+        span.style.setProperty("--rotate", Math.random()); // 角度随机
+        span.style.top = Math.random() * 90 + "vh";
+        span.style.left = Math.random() * 90 + "vw";
+        background.appendChild(span);
+    }
 </script>
     
 </script>
