@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Are you fat?</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+    label, select, input { display: block; margin: 10px 0; }
+    select, input { padding: 5px; width: 100%; }
+    button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 20px; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Are you fat today?</h1>
+
+  <label for="gender">性别：</label>
+  <select id="gender">
+    <option value="male">男</option>
+    <option value="female">女</option>
+    <option value="mtf">男跨女(MTF)</option>
+    <option value="ftm">女跨男(FTM)</option>
+  </select>
+
+  <label for="weight">体重 (kg)：</label>
+  <select id="weight">
+    <script>
+      for (let i = 30; i <= 150; i++) {
+        document.write(`<option value="${i}" ${i === 60 ? 'selected' : ''}>${i} kg</option>`);
+      }
+    </script>
+  </select>
+
+  <label for="height">净身高 (cm)：</label>
+  <select id="height">
+    <script>
+      for (let i = 130; i <= 210; i++) {
+        document.write(`<option value="${i}" ${i === 172 ? 'selected' : ''}>${i} cm</option>`);
+      }
+    </script>
+  </select>
+
+  <label for="age">年龄：</label>
+  <select id="age">
+    <script>
+      for (let i = 1; i <= 100; i++) {
+        document.write(`<option value="${i}" ${i === 19 ? 'selected' : ''}>${i}</option>`);
+      }
+    </script>
+  </select>
+
+  <label for="activity">请选择最符合你的每日活动情况：</label>
+  <select id="activity">
+    <option value="1.2">久坐不动（一整天几乎没动，只坐着）</option>
+    <option value="1.375">轻度活动（偶尔走动，两点一线，无规律锻炼）</option>
+    <option value="1.45">轻中度活动（每周运动/锻炼1-2次）</option>
+    <option value="1.55">中度活动（每周运动/锻炼3-5次）</option>
+    <option value="1.725">较高活动（几乎每天都运动/锻炼，或者从事体力劳动）</option>
+    <option value="1.9">高强度活动（高强度体力劳动，或者运动员级别的运动强度）</option>
+  </select>
+
+  <button onclick="calculateCalories()">计算</button>
+
+  <div id="result"></div>
+  <div id="foodSuggestion"></div>
+  <script>
+    function calculateCalories() {
+      const gender = document.getElementById("gender").value;
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+      const age = parseInt(document.getElementById("age").value);
+      const activity = parseFloat(document.getElementById("activity").value);
+
+      if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+        document.getElementById("result").innerText = "请填写所有数值！";
+        return;
+      }
+
+      let bmr = 0;
+      if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else if (gender === "female") {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      } else if (gender === "mtf") {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 80;
+      } else if (gender === "ftm") {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 60;
+      }
+
+      const totalCalories = bmr * activity;
+
+      document.getElementById("result").innerText =
+        `根据您的基础代谢率（BMR）与活动水平，您每天消耗大约 ${totalCalories.toFixed(2)} 千卡。`;
+        const foods = [
+  { name: "米饭（一碗）", calories: 250 },
+  { name: "包子（一个）", calories: 200 },
+  { name: "馒头（一个）", calories: 230 },
+  { name: "油条（一根）", calories: 220 },
+  { name: "小笼包（一个）", calories: 70 },
+  { name: "鸡蛋（一个）", calories: 80 },
+  { name: "红烧肉（100克）", calories: 350 },
+  { name: "宫保鸡丁（100克）", calories: 210 },
+  { name: "鱼香肉丝（100克）", calories: 180 },
+  { name: "麻婆豆腐（100克）", calories: 150 },
+  { name: "炒面（一碗）", calories: 400 },
+  { name: "炒饭（一碗）", calories: 450 },
+  { name: "拉面（一碗）", calories: 500 },
+  { name: "水饺（10个）", calories: 400 },
+  { name: "春卷（一个）", calories: 120 },
+  { name: "烧饼（一个）", calories: 300 },
+  { name: "糯米糍（一个）", calories: 180 },
+  { name: "绿豆汤（一碗）", calories: 120 },
+  { name: "豆腐脑（一碗）", calories: 150 },
+  { name: "粽子（一个）", calories: 220 },
+  { name: "珍珠奶茶（中杯）", calories: 400 },
+  { name: "原味奶茶（中杯）", calories: 350 },
+  { name: "红豆奶茶（中杯）", calories: 420 },
+  { name: "椰果奶茶（中杯）", calories: 370 },
+  { name: "布丁奶茶（中杯）", calories: 390 },
+  { name: "焦糖奶茶（中杯）", calories: 410 },
+  { name: "抹茶奶茶（中杯）", calories: 380 },
+  { name: "芝士奶盖绿茶（中杯）", calories: 450 },
+  { name: "乌龙奶茶（中杯）", calories: 360 },
+  { name: "芋泥奶茶（中杯）", calories: 470 },
+  { name: "燕麦奶茶（中杯）", calories: 330 },
+  { name: "桂花乌龙奶茶（中杯）", calories: 340 },
+  { name: "鲜果茶（大杯）", calories: 250 },
+  { name: "杨枝甘露奶茶（中杯）", calories: 500 },
+  { name: "巧克力奶茶（中杯）", calories: 430 },
+  { name: "奶绿（中杯）", calories: 360 },
+  { name: "双拼奶茶（珍珠+椰果）（大杯）", calories: 550 },
+  { name: "芝芝莓莓（大杯）", calories: 480 },
+  { name: "烧仙草奶茶（中杯）", calories: 410 },
+  { name: "奶盖可可（中杯）", calories: 470 },
+  { name: "汉堡（标准）", calories: 500 },
+  { name: "炸鸡腿（一个）", calories: 300 },
+  { name: "薯条（中份）", calories: 320 },
+  { name: "披萨（一块）", calories: 280 },
+  { name: "意大利面（100克）", calories: 350 },
+  { name: "牛排（200克）", calories: 450 },
+  { name: "奶酪焗饭（一份）", calories: 500 },
+  { name: "热狗（一个）", calories: 400 },
+  { name: "三明治（一个）", calories: 350 },
+  { name: "炸鱼薯条（一份）", calories: 600 },
+  { name: "西式早餐（培根+鸡蛋+吐司）", calories: 550 },
+  { name: "凯撒沙拉（加酱）", calories: 320 },
+  { name: "鸡肉卷（一个）", calories: 450 },
+  { name: "奶油蘑菇汤（一碗）", calories: 200 },
+  { name: "炸洋葱圈（5个）", calories: 280 },
+  { name: "巧克力布朗尼（一个）", calories: 400 },
+  { name: "芝士蛋糕（1块）", calories: 420 },
+  { name: "冰淇淋圣代（中杯）", calories: 380 },
+  { name: "奶昔（中杯）", calories: 450 },
+  { name: "美式薯饼（一个）", calories: 250 }
+];
+
+
+// 随机选一个食物
+const randomFood = foods[Math.floor(Math.random() * foods.length)];
+const maxAmount = Math.floor(totalCalories / randomFood.calories);
+
+const suggestion = `
+  <h3>Will you be fat:</h3>
+  <p>如果今天你只吃（喝） <strong>${randomFood.name}</strong>，那最多可以吃 <strong><a style="color:redd;">${maxAmount}</strong> 份才不会变胖！</a></p>
+`;
+
+document.getElementById("foodSuggestion").innerHTML = suggestion;}
+  </script>
+</body>
+</html>
