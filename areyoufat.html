@@ -161,7 +161,7 @@ const maxAmount = Math.floor(totalCalories / randomFood.calories);
 
 const suggestion = `
   <h3>Will you be fat:</h3>
-  <p>如果今天你吃（喝） <strong>${randomFood.name}</strong>的话，那你最多可以吃 <strong><a style="color:redd;">${maxAmount}</strong> 份，不然你就会变胖！</a></p>
+  <p>如果今天你吃（喝） <strong>${randomFood.name}</strong>的话，那你最多可以吃（喝） <strong><a style="color:redd;">${maxAmount}</strong> 份，不然你就会变胖！</a></p>
 `;
 
 document.getElementById("foodSuggestion").innerHTML = suggestion;}
