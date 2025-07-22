@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>上海签证申请</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f8f9fa;
+        }
+    
+        .visa-preview {
+          position: relative;
+          width: 100%;
+          max-width: 600px;
+          aspect-ratio: 3/2;
+          background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0c/Customs_House_20254-Shanghai_%2832203036164%29.jpg');
+          background-size: cover;
+          background-position: center;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 20px;
+          color: #000;
+          font-size: 14px;
+          display: none;
+        }
+    
+        .visa-text {
+          position: absolute;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+        .visa-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.5); 
+      z-index: 0;
+    }
+        .photo {
+          position: absolute;
+          top: 70px;
+          left: 30px;
+          width: 100px;
+          height: 120px;
+          border: 1px solid #000;
+          object-fit: cover;
+          background-color: #eee;
+        }
+    
+        
+        #title     { top: 5px;  left: 15px; font-size: 35px;}
+        #title-e     { top: 22px;  left: 180px; font-size: 20px;}
+        #cat-l     { top: 50px;  left: 220px; font-size: smaller;}
+        #cat       { top: 60px;  left: 220px; font-size: larger;}
+        #issue-l     { top: 90px;  left: 220px; font-size: smaller;}
+        #issue     { top: 100px;  left: 220px; font-size: larger;}
+        #expiry-l    { top: 90px;  left: 360px; font-size: smaller;}
+        #expiry    { top: 100px;  left: 360px; font-size: larger;}
+        #entry-l     { top: 130px; left: 220px; font-size: smaller;}
+        #entry     { top: 140px; left: 220px; font-size: larger;}
+        #duration-l  { top: 130px; left: 310px; font-size: smaller;}
+        #duration  { top: 140px; left: 310px; font-size: larger;}
+        #place-l     { top: 130px; left: 465px; font-size: smaller;}
+        #place     { top: 140px; left: 465px; font-size: larger;}
+        #name-l     { top: 168px; left: 220px; font-size: smaller;}
+        #name      { top: 180px; left: 220px; font-size: larger;}
+        #sex-l     { top: 210px; left: 220px; font-size: smaller;}
+        #sex       { top: 220px; left: 220px; font-size: larger;}
+        #birth-l     { top: 210px; left: 320px; font-size: smaller;}
+        #birth     { top: 220px; left: 320px; font-size: larger;}
+        #passport-l  { top: 210px; left: 455px; font-size: smaller;}
+        #passport  { top: 220px; left: 4550px; font-size: larger;}
+        #remarks-l   { top: 280px; left: 220px; font-size: smaller;}
+        #remarks   { top: 290px; left: 220px; font-size: larger;}
+        #mrcode1   { top: 330px; left: 30px; font-family: monospace; font-size: larger;}
+        #mrcode2   { top: 350px; left: 30px; font-family: monospace; font-size: larger;}
+    
+        .form-section input, .form-section select {
+          margin-bottom: 1rem;
+        }
+        @media (max-width: 767.98px) {
+      .row {
+        flex-direction: column;
+      }
+      .visa-preview {
+        width: 100%;
+        aspect-ratio: unset;
+        height: auto;
+        padding-bottom: 120%;
+      }
+    
+      .visa-text {
+        font-size: 3.5vw;
+      }
+    
+      .photo {
+        width: 20vw;
+        height: 24vw;
+        top: 15vw;
+        left: 6vw;
+      }
+    
+      
+      #title     { top: 2vw; left: 5vw; font-size: 6vw; }
+      #title-e   { top: 4vw; left: 40vw; font-size: 4vw; }
+      #cat-l     { top: 15vw; left: 40vw; }
+      #cat       { top: 18vw; left: 40vw; }
+      #issue-l   { top: 23vw; left: 40vw; }
+      #issue     { top: 26vw; left: 40vw; }
+      #expiry-l  { top: 32vw; left: 40vw; }
+      #expiry    { top: 35vw; left: 40vw; }
+      #entry-l   { top: 40vw; left: 40vw; }
+      #entry     { top: 43vw; left: 40vw; }
+      #duration-l{ top: 48vw; left: 40vw; }
+      #duration  { top: 51vw; left: 40vw; }
+      #place-l   { top: 56vw; left: 40vw; }
+      #place     { top: 59vw; left: 40vw; }
+      #name-l    { top: 64vw; left: 40vw; }
+      #name      { top: 67vw; left: 40vw; }
+      #sex-l     { top: 72vw; left: 40vw; }
+      #sex       { top: 75vw; left: 40vw; }
+      #birth-l   { top: 80vw; left: 40vw; }
+      #birth     { top: 83vw; left: 40vw; }
+      #passport-l{ top: 88vw; left: 40vw; }
+      #passport  { top: 91vw; left: 40vw; }
+      #remarks-l { top: 96vw; left: 40vw; }
+      #remarks   { top: 99vw; left: 40vw; }
+      #mrcode1   { top: 108vw; left: 5vw; }
+      #mrcode2   { top: 111vw; left: 5vw; }
+    }
+    </style>
+</head>
+
+<body class="container py-4">
+    <h3 class="mb-4">上海签证申请</h3>
+    <div class="row">
+        <div class="col-md-5 form-section" id="visaform">
+            <label>姓名</label>
+            <input type="text" id="fullName" class="form-control" placeholder="王沪宁"/>
+
+            <label>性别</label>
+            <select id="gender" class="form-select">
+                <option value="">请选择</option>
+                <option value="M">男</option>
+                <option value="F">女</option>
+            </select>
+
+            <label>出生日期</label>
+            <input type="date" id="birthDate" class="form-control" value="2005-01-01" />
+
+            <label>护照号</label>
+            <input type="text" id="passportNumber" class="form-control" value="E" />
+            <input class="form-check-input" type="checkbox" id="haveCHNP" />
+            <label class="form-check-label" for="haveCHNP">
+                我持有中华人民共和国身份证
+            </label>
+            <br>
+            <label>赴沪目的</label>
+            <select id="purpose" class="form-select">
+                <option value="">请选择</option>
+                <option value="B2">旅游</option>
+                <option value="B1">商务</option>
+                <option value="F">留学</option>
+                <option value="R">探亲</option>
+                <option value="M">移民</option>
+                <option value="T">过境</option>
+            </select>
+            <input class="form-check-input" type="checkbox" id="withMixue" />
+            <label class="form-check-label" for="withMixue">
+                最近5年是否购买/饮用蜜雪冰城（总部位于河南郑州）旗下产品
+            </label>
+            <br>
+            <input class="form-check-input" type="checkbox" id="withMixue" />
+            <label class="form-check-label" for="withMixue">
+                最近5年是否购买/饮用瑞幸咖啡旗下产品
+            </label>
+            <br>
+            <input class="form-check-input" type="checkbox" id="withMixue" />
+            <label class="form-check-label" for="withMixue">
+                最近5年是否购买/饮用星巴克旗下产品
+            </label>
+            <br>
+            <label>你的出生地</label>
+            <select id="birthRegion" class="form-select">
+                <option value="">请选择</option>
+                <option value="A">海外</option>
+                <option value="B">北京、广州、深圳</option>
+                <option value="C">天津、重庆</option>
+                <option value="D">河南省</option>
+                <option value="E">其他省份</option>
+            </select>
+            <br>
+            <label>你的最高学历</label>
+            <select id="study" class="form-select">
+                <option value="">请选择</option>
+                <option value="A">本科</option>
+                <option value="B">研究生</option>
+                <option value="C">博士</option>
+                <option value="D">其它</option>
+            </select>
+            <br>
+
+
+
+
+
+
+            <label>上传照片</label>
+            <input type="file" id="photoUpload" class="form-control" accept="image/*" />
+            <button class="btn btn-primary mt-3" onclick="calculateScore()">提交签证申请</button>
+            
+        </div>
+        <div id="resultArea" class="alert mt-3"></div>
+        <div class="col-md-7 d-flex justify-content-center align-items-start">
+            <div class="visa-preview" id="visacard">
+                <img id="visaPhoto" class="photo" src="https://via.placeholder.com/100x120?text=照片" alt="Visa Photo" />
+                <div id="title" class="visa-text">上海签证</div>
+                <div id="title-e" class="visa-text">Visa of Shanghai</div>
+                <div id="cat-l" class="visa-text">签证类型 / Visa Type</div>
+                <div id="cat" class="visa-text">L</div>
+
+                <div id="issue-l" class="visa-text">签发日期 / Issue Date</div>
+                <div id="issue" class="visa-text"></div>
+
+                <div id="expiry-l" class="visa-text">有效期至 / Valid Until</div>
+                <div id="expiry" class="visa-text"></div>
+
+                <div id="entry-l" class="visa-text">次数 / Entries</div>
+                <div id="entry" class="visa-text">M</div>
+
+                <div id="duration-l" class="visa-text">停留天数 / Duration (Days)</div>
+                <div id="duration" class="visa-text"></div>
+
+                <div id="place-l" class="visa-text">签发地点 / Place of Issue</div>
+                <div id="place" class="visa-text">Online</div>
+
+                <div id="name-l" class="visa-text">姓名 / Name</div>
+                <div id="name" class="visa-text"></div>
+
+                <div id="sex-l" class="visa-text">性别 / Gender</div>
+                <div id="sex" class="visa-text"></div>
+
+                <div id="birth-l" class="visa-text">出生日期 / Date of Birth</div>
+                <div id="birth" class="visa-text"></div>
+
+                <div id="passport-l" class="visa-text">护照号 / Passport Number</div>
+                <div id="passport" class="visa-text"></div>
+
+                <div id="remarks-l" class="visa-text">备注 / Remarks</div>
+                <div id="remarks" class="visa-text">-</div>
+                <div id="mrcode1" class="visa-text">VCJCHANN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+                <div id="mrcode2" class="visa-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("haveCHNP").addEventListener("change", function () {
+        const passportInput = document.getElementById("passportNumber");
+        if (this.checked) {
+          passportInput.disabled = true;
+          passportInput.value = "中国居民无需填写";
+          
+    
+        } else {
+          passportInput.disabled = false;
+          passportInput.value = "";
+        }
+      });
+      function calculateScore() {
+        const name = document.getElementById("fullName").value.trim();
+        const gender = document.getElementById("gender").value;
+        const birthDate = document.getElementById("birthDate").value;
+        const purposes = document.getElementById("purpose").value;
+        const birthRegions = document.getElementById("birthRegion").value;
+        const studys = document.getElementById("study").value;
+        const photo = document.getElementById("photoUpload").files.length;
+        if (!name || !gender || !birthDate || !purposes || !birthRegions || !studys || !photo) {
+          alert("请填写所有必填项并上传照片！");
+          return;
+        }
+
+        let score = 39;
+    
+        const isCHN = document.getElementById("haveCHNP").checked;
+        if (isCHN) score -= 10;
+    
+        const purpose = document.getElementById("purpose").value;
+        if (purpose === "B1" || purpose === "F" || purpose === "R") score += 20;
+        else if (purpose === "B2") score -= 10;
+        else if (purpose === "T") score += 5;
+        else if (purpose === "M") score -= 10;
+    
+        const checkboxes = document.querySelectorAll("#withMixue");
+        if (checkboxes[0]?.checked) score -= 10; // 蜜雪冰城
+        if (checkboxes[1]?.checked) score += 5; // 瑞幸
+        if (checkboxes[2]?.checked) score += 10;  // 星巴克
+    
+        const birthRegion = document.getElementById("birthRegion").value;
+        if (birthRegion === "A") score += 20;
+        else if (birthRegion === "B") score += 10;
+        else if (birthRegion === "C") score += 5;
+        else if (birthRegion === "D") score -= 20;
+        else if (birthRegion === "E") score -= 10;
+
+        const study = document.getElementById("study").value;
+        if (birthRegion === "A") score += 10;
+        else if (birthRegion === "B") score += 15;
+        else if (birthRegion === "C") score += 20;
+        else if (birthRegion === "D") score -= 20;
+    
+    
+        let resultText = "";
+        let alertClass = "";
+        
+        if (score >= 80) {
+          resultText = `<strong>🎉 恭喜！这是您的上海签证，你现在可以入境上海</strong>`;
+          document.getElementById("duration").textContent = "N/A";
+          document.getElementById("expiry").textContent = "N/A";
+          document.getElementById('visacard').style.display = "block"
+          document.getElementById('visaform').style.display = "none"
+          alertClass = "alert-success";
+          let result = '';
+          for (let i = 0; i < 10; i++) {
+            result += Math.floor(Math.random() * 10);
+          }
+          document.getElementById("mrcode1").textContent='VCJCHANN'+result+'<<<<<<<<<<';
+        } else if (score >= 60) {
+          resultText = `<strong>🎉 恭喜！这是您的上海签证，你现在可以入境上海</strong>`;
+          document.getElementById("duration").textContent = "60";
+          const now = new Date();
+          now.setDate(now.getDate() + 60);
+          const newDay = now.getDate().toString().padStart(2, '0');
+          const monthArr = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+          const newMonthStr = monthArr[now.getMonth()];
+          const newYear = now.getFullYear();
+          document.getElementById("expiry").textContent = newDay + newMonthStr + newYear;
+          alertClass = "alert-primary";
+          document.getElementById('visacard').style.display = "block"
+          document.getElementById('visaform').style.display = "none"
+          let result = '';
+          for (let i = 0; i < 10; i++) {
+            result += Math.floor(Math.random() * 10);
+          }
+          document.getElementById("mrcode1").textContent='VCJCHANN'+result+'<<<<<<<<<<';
+        } else if (score >= 40) {
+          resultText = `<strong>🎉 恭喜！这是您的上海签证，你现在可以入境上海</strong>`;
+          document.getElementById("duration").textContent = "15";
+          const now = new Date();
+          now.setDate(now.getDate() + 15);
+          const newDay = now.getDate().toString().padStart(2, '0');
+          const monthArr = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+          const newMonthStr = monthArr[now.getMonth()];
+          const newYear = now.getFullYear();
+          document.getElementById("expiry").textContent = newDay + newMonthStr + newYear;
+          alertClass = "alert-warning";
+          document.getElementById('visacard').style.display = "block"
+          document.getElementById('visaform').style.display = "none"
+          let result = '';
+          for (let i = 0; i < 10; i++) {
+            result += Math.floor(Math.random() * 10);
+          }
+          document.getElementById("mrcode1").textContent='VCJCHANN'+result+'<<<<<<<<<<';
+        } else {
+          resultText = `<strong>根据上海市人民政府要求，不能给你上海签证，这次决定不可申诉，你被禁止入境上海市区，包括黄浦区、徐汇区、静安区、长宁区、普陀区、虹口区、杨浦区。你可以进入嘉定区，这是免签的。</strong>你可以在你的个人情况发生改变后再次申请上海签证。`;
+          document.getElementById("duration").textContent = "";
+          document.getElementById("expiry").textContent = "";
+          alertClass = "alert-danger";
+          document.getElementById('visacard').style.display = "none"
+          document.getElementById('visaform').style.display = "none"
+        }
+    
+        const resultDiv = document.getElementById("resultArea");
+        resultDiv.innerHTML = resultText;
+        resultDiv.className = `alert mt-3 ${alertClass}`;
+        resultDiv.style.display = "block";
+      }
+      function formatToday() {
+      const now = new Date();
+      const day = now.getDate().toString().padStart(2, '0');
+      const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                          "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+      const month = monthNames[now.getMonth()];
+      const year = now.getFullYear();
+    
+      return `${day}${month}${year}`;
+    }
+    
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("issue").textContent = formatToday();
+    });
+    
+        const updateVisa = () => {
+          const name = document.getElementById("fullName").value;
+          const gender = document.getElementById("gender").value;
+          const birth = document.getElementById("birthDate").value;
+          const passport = document.getElementById("passportNumber").value;
+          const purpose = document.getElementById("purpose").value;
+    
+          document.getElementById("name").textContent = name;
+          document.getElementById("sex").textContent = gender;
+          document.getElementById("birth").textContent = birth;
+          document.getElementById("passport").textContent = passport;
+          document.getElementById("cat").textContent = purpose;
+          document.getElementById("mrcode1").textContent = `VCJCHANN<<<<<<<<<<`;
+          document.getElementById("mrcode2").textContent = passport + "<<<<<<<<<<";
+        };
+    
+        document.getElementById("fullName").addEventListener("input", updateVisa);
+        document.getElementById("gender").addEventListener("input", updateVisa);
+        document.getElementById("birthDate").addEventListener("input", updateVisa);
+        document.getElementById("passportNumber").addEventListener("input", updateVisa);
+        document.getElementById("purpose").addEventListener("input", updateVisa);
+        document.getElementById("photoUpload").addEventListener("change", function () {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById("visaPhoto").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
+</body>
+
+</html>
