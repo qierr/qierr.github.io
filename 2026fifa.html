@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 世界杯参赛球队</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #000000, #000080);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        /* 标题和副标题 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+        
+        /* 大洲容器 */
+        .continent-section {
+            margin-bottom: 50px;
+        }
+        .continent-section h2 {
+            font-size: 2em;
+            color: #4CAF50; /* 绿色突出标题 */
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 球队卡片网格布局 */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* 球队卡片样式 */
+        .team-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 国旗图片 */
+        .team-card img.flag {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        /* 球队名称 */
+        .team-card h3 {
+            font-size: 1.5em;
+            margin: 0;
+            color: #ffffff;
+        }
+        
+        /* 资格信息 */
+        .team-card p.qualification {
+            font-size: 0.9em;
+            color: #909090;
+            margin-top: 5px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .teams-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .continent-section h2 {
+                font-size: 1.5em;
+            }
+            .team-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>2026 FIFA 世界杯参赛球队</h1>
+        <p>更新:2025/9/12
+    </div>
+    <div class="main-content">
+        <div class="continent-section">
+            <h2>亚洲 (AFC)</h2>
+            <ul class="teams-grid">
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/jp.png">
+                    <h3>日本</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/kr.png">
+                    <h3>韩国</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/qa.png">
+                    <h3>卡塔尔</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/ir.png">
+                    <h3>伊朗</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/uz.png">
+                    <h3>乌兹别克斯坦</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/jo.png">
+                    <h3>约旦</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/au.png">
+                    <h3>澳大利亚</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="continent-section">
+            <h2>欧洲 (UEFA)</h2>
+            <p>没有欧洲赛区国家确定晋级</p>
+
+        </div>
+
+        <div class="continent-section">
+            <h2>中北美及加勒比海 (CONCACAF)</h2>
+            <ul class="teams-grid">
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/ca.png">
+                    <h3>加拿大</h3>
+                    <p class="qualification">东道主</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/mx.png">
+                    <h3>墨西哥</h3>
+                    <p class="qualification">东道主</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/us.png">
+                    <h3>美国</h3>
+                    <p class="qualification">东道主</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="continent-section">
+            <h2>南美洲 (CONMEBOL)</h2>
+            <ul class="teams-grid">
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/br.png">
+                    <h3>巴西</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/ar.png">
+                    <h3>阿根廷</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/ec.png">
+                    <h3>厄瓜多尔</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/co.png">
+                    <h3>哥伦比亚</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/uy.png">
+                    <h3>乌拉圭</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/py.png">
+                    <h3>巴拉圭</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="continent-section">
+            <h2>非洲 (CAF)</h2>
+            <ul class="teams-grid">
+
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/ma.png">
+                    <h3>摩洛哥</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="continent-section">
+            <h2>大洋洲 (OFC)</h2>
+            <ul class="teams-grid">
+                <li class="team-card">
+                    <img class="flag" src="https://flagcdn.com/w320/nz.png">
+                    <h3>新西兰</h3>
+                    <p class="qualification">已确定晋级</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
