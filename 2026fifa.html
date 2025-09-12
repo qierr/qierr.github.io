@@ -111,13 +111,76 @@
                 padding: 15px;
             }
         }
+
+        .countdown-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .countdown-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-item .value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #4CAF50; /* 绿色突出数字 */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-item .label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #ccc;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>2026 FIFA 世界杯参赛球队</h1>
-        <p>更新:2025/9/12
+        <p>更新:2025/9/12</p>
+    </div>
+    <div class="countdown-container">
+        <h1>距离世界杯还有</h1>
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="value" id="days">00</span>
+                <span class="label">天</span>
+            </div>
+            <div class="countdown-item">
+                <span class="value" id="hours">00</span>
+                <span class="label">小时</span>
+            </div>
+            <div class="countdown-item">
+                <span class="value" id="minutes">00</span>
+                <span class="label">分钟</span>
+            </div>
+            <div class="countdown-item">
+                <span class="value" id="seconds">00</span>
+                <span class="label">秒</span>
+            </div>
+        </div>
     </div>
     <div class="main-content">
         <div class="continent-section">
@@ -249,6 +312,43 @@
             </ul>
         </div>
     </div>
+    <script>
+        // 设置 2026 年世界杯开幕日期
+        // 世界杯通常在六月中旬举行。这里使用 2026 年 6 月 11 日作为示例。
+        const countdownDate = new Date("2026-06-11T00:00:00").getTime();
 
+        const updateCountdown = () => {
+            // 获取当前时间
+            const now = new Date().getTime();
+
+            // 计算时间差
+            const distance = countdownDate - now;
+
+            // 计算天、小时、分钟和秒
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // 将计算结果显示在页面上
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            // 如果倒计时结束
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.countdown-container h1').innerText = "2026 世界杯已开幕！";
+                document.querySelector('.countdown').innerHTML = "";
+            }
+        };
+
+        // 每秒更新一次倒计时
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // 首次加载立即执行一次，避免延迟
+        updateCountdown();
+    </script>
 </body>
 </html>
